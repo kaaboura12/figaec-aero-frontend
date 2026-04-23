@@ -1,0 +1,131 @@
+import type {
+  KpiMetric,
+  DelayedOF,
+  Department,
+  FabricationOrder,
+} from "@/types/dashboard";
+
+export const kpiMetrics: KpiMetric[] = [
+  {
+    id: "total",
+    label: "Total OF",
+    value: 7941,
+    badge: "100% du total",
+    trend: [65, 72, 68, 78, 82, 75, 88, 92, 87, 95],
+    color: "blue",
+    iconKey: "clipboard",
+  },
+  {
+    id: "en-cours",
+    label: "En cours",
+    value: 3200,
+    badge: "40.3% du total",
+    trend: [30, 35, 32, 38, 42, 40, 45, 44, 48, 50],
+    color: "green",
+    iconKey: "play-circle",
+  },
+  {
+    id: "en-retard",
+    label: "En retard",
+    value: 540,
+    badge: "6.8% du total",
+    trend: [20, 18, 22, 19, 16, 18, 15, 17, 14, 12],
+    color: "red",
+    iconKey: "clock",
+  },
+  {
+    id: "en-attente",
+    label: "En attente",
+    value: 120,
+    badge: "1.5% du total",
+    trend: [8, 10, 9, 11, 10, 12, 11, 10, 9, 11],
+    color: "amber",
+    iconKey: "pause-circle",
+  },
+];
+
+export const delayedOFs: DelayedOF[] = [
+  { ofNumber: "OF2405-10235", article: "A320-DOOR-FRAME", delayDays: 5 },
+  { ofNumber: "OF2405-09876", article: "B737-WING-RIB", delayDays: 3 },
+  { ofNumber: "OF2405-11223", article: "A320-FUSELAGE-PANEL", delayDays: 2 },
+  { ofNumber: "OF2405-10777", article: "B787-DOOR-ASSY", delayDays: 1 },
+  { ofNumber: "OF2405-09111", article: "A321-TAIL-CONE", delayDays: 1 },
+];
+
+export const departments: Department[] = [
+  { code: "TOL_T", count: 2450, percentage: 30.9, color: "#2563EB" },
+  { code: "ALU_T", count: 1980, percentage: 24.9, color: "#10B981" },
+  { code: "SUP_T", count: 1520, percentage: 19.2, color: "#8B5CF6" },
+  { code: "PRO_T", count: 1050, percentage: 13.2, color: "#F59E0B" },
+  { code: "MD_T", count: 941, percentage: 11.8, color: "#9CA3AF" },
+];
+
+export const recentOrders: FabricationOrder[] = [
+  {
+    ofNumber: "OF2405-12345",
+    article: "A320-DOOR-FRAME",
+    designation: "Cadre de porte A320",
+    department: "TOL_T",
+    workstation: "MACH_TOL_01",
+    currentOperation: "Usinage",
+    status: "En cours",
+    plannedQty: 10,
+    remainingQty: 3,
+    projectedEndDate: "28/05/2024",
+    delay: 0,
+  },
+  {
+    ofNumber: "OF2405-12344",
+    article: "B737-WING-RIB",
+    designation: "Ailette d'aile B737",
+    department: "ALU_T",
+    workstation: "ALU_MILL_02",
+    currentOperation: "Fraisage",
+    status: "En retard",
+    plannedQty: 20,
+    remainingQty: 12,
+    projectedEndDate: "20/05/2024",
+    delay: 3,
+  },
+  {
+    ofNumber: "OF2405-12343",
+    article: "A320-FUSELAGE-PANEL",
+    designation: "Panneau fuselage A320",
+    department: "SUP_T",
+    workstation: "ASSEMBLY_03",
+    currentOperation: "Assemblage",
+    status: "En cours",
+    plannedQty: 15,
+    remainingQty: 5,
+    projectedEndDate: "29/05/2024",
+    delay: 0,
+  },
+  {
+    ofNumber: "OF2405-12342",
+    article: "B787-DOOR-ASSY",
+    designation: "Ensemble porte B787",
+    department: "TOL_T",
+    workstation: "MACH_TOL_02",
+    currentOperation: "Perçage",
+    status: "En attente",
+    plannedQty: 8,
+    remainingQty: 8,
+    projectedEndDate: "02/06/2024",
+    delay: 0,
+  },
+  {
+    ofNumber: "OF2405-12341",
+    article: "A321-TAIL-CONE",
+    designation: "Cône arrière A321",
+    department: "TOL_T",
+    workstation: "FORM_TOL_01",
+    currentOperation: "Formage",
+    status: "En cours",
+    plannedQty: 12,
+    remainingQty: 4,
+    projectedEndDate: "27/05/2024",
+    delay: -1,
+  },
+];
+
+export const lastImportDate = "24/05/2024 08:30";
