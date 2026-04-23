@@ -6,11 +6,6 @@ import { usePathname } from "next/navigation";
 import {
   Home,
   ClipboardList,
-  Upload,
-  BarChart3,
-  FileText,
-  Database,
-  Settings,
   ChevronDown,
   type LucideIcon,
 } from "lucide-react";
@@ -25,11 +20,6 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: "Accueil", href: "/dashboard/homepage", icon: Home },
   { label: "Ordres de fabrication", href: "/dashboard/OrdreDeFabrication", icon: ClipboardList },
-  { label: "Imports", href: "/dashboard/imports", icon: Upload },
-  { label: "Tableaux de bord", href: "/dashboard/dashboards", icon: BarChart3 },
-  { label: "Rapports", href: "/dashboard/reports", icon: FileText },
-  { label: "Référentiels", href: "/dashboard/referentials", icon: Database },
-  { label: "Paramètres", href: "/dashboard/settings", icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -84,11 +74,11 @@ export default function Sidebar() {
       <div className="border-t border-gray-100 px-3 py-3">
         <button className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors hover:bg-gray-50">
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-800 text-xs font-semibold text-white">
-            AM
+            YA
           </div>
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-semibold text-gray-800">
-              Amine Mahmoudi
+              Youssef Attalah
             </p>
             <p className="truncate text-xs text-gray-400">Administrateur</p>
           </div>

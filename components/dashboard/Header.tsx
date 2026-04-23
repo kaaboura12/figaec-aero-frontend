@@ -57,7 +57,7 @@ export default function Header() {
 
       {/* User avatar */}
       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 text-xs font-semibold text-white">
-        AM
+        YA
       </div>
     </header>
   );

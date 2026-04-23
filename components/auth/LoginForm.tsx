@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Mail, Lock, Eye, EyeOff, User, ShieldCheck } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, User, ShieldCheck, AlertCircle } from "lucide-react";
 import { loginSchema, type LoginSchema } from "@/lib/validations/auth";
+import { authApi, tokenStorage, ApiError } from "@/lib/api";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -20,9 +24,22 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data: LoginSchema) => {
-    // TODO: replace with real auth call (e.g. NextAuth signIn or API route)
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    console.log("Login payload:", data);
+    setServerError(null);
+    try {
+      const response = await authApi.login(data);
+      tokenStorage.set(response.access_token);
+      router.push("/dashboard/homepage");
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setServerError(
+          err.status === 401
+            ? "Email ou mot de passe incorrect"
+            : err.message,
+        );
+      } else {
+        setServerError("Une erreur est survenue. Veuillez réessayer.");
+      }
+    }
   };
 
   return (
@@ -91,6 +108,16 @@ export default function LoginForm() {
               </button>
             </div>
           </div>
+
+          {serverError && (
+            <div
+              role="alert"
+              className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-sm text-red-600"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0" />
+              {serverError}
+            </div>
+          )}
 
           <Button type="submit" fullWidth isLoading={isSubmitting}>
             Se connecter
